@@ -10,8 +10,6 @@ class Solution:
             board[i].reverse()
 
         linearBoard = list(chain(*board))
-        for i in range(lth):
-            print(i, linearBoard[i])
 
         def dps(cur, move):
             if dp[cur] == -1 or dp[cur] > move:
