@@ -1,1 +1,1 @@
-# Let's Solve Problem Everyday!!
+# Let's solve a problem every day!
