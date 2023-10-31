@@ -13,6 +13,6 @@ class Solution:
         while cur is not None:
             if cur in history:
                 return True
-            history.append(cur)
+            history.add(cur)
             cur = cur.next
         return False
