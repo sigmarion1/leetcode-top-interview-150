@@ -4,24 +4,23 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        stack = deque()
-        stack.append((root, float("inf"), float("-inf")))
+        prv = float("-inf")
 
-        while stack:
-            cur, mx, mi = stack.pop()
+        def inorder(node):
+            nonlocal prv
 
-            if not mi < cur.val < mx:
+            if not node:
+                return True
+
+            if not (inorder(node.left) and prv < node.val):
                 return False
 
-            if cur.left:
-                if cur.left.val >= cur.val:
-                    return False
-                stack.append((cur.left, min(mx, cur.val), mi))
-            if cur.right:
-                if cur.right.val <= cur.val:
-                    return False
-                stack.append((cur.right, mx, max(cur.val, mi)))
+            prv = node.val
 
-        return True
+            return inorder(node.right)
+
+        return inorder(root)
