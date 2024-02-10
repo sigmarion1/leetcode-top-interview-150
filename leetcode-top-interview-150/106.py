@@ -6,10 +6,17 @@
 #         self.right = right
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        if not inorder or not postorder:
+
+        if not inorder:
             return None
-        root = TreeNode(postorder[-1])
-        i = inorder.index(postorder[-1])
-        root.left = self.buildTree(inorder[:i], postorder[:i])
-        root.right = self.buildTree(inorder[i + 1 :], postorder[i:-1])
-        return root
+
+        curVal = postorder[-1]
+        headIndex = inorder.index(curVal)
+
+        cur = TreeNode()
+
+        cur.val = postorder[-1]
+        cur.left = self.buildTree(inorder[:headIndex], postorder[:headIndex])
+        cur.right = self.buildTree(inorder[headIndex + 1 :], postorder[headIndex:-1])
+
+        return cur
